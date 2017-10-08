@@ -1,5 +1,5 @@
-from core import stdoutIO, CodeGenerator
-from conditions import make_condition
+from rulengine.core import stdoutIO, CodeGenerator
+from rulengine.conditions import make_condition
 
 VERSION = (0, 0, 1)
 __version__ = '.'.join(map(str, VERSION))

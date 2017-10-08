@@ -1,4 +1,4 @@
-from core import _import_class, Operator
+from rulengine.core import _import_class, Operator
 
 
 def make_condition(rule):
