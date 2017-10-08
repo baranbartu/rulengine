@@ -4,12 +4,13 @@ from rulengine.core import _import_class, Operator
 def make_condition(rule):
     """Get a condition instance for given operator and return condition code"""
 
-    condition_method = 'conditions.c_{0}_{1}'.format(rule.data_structure,
-                                                     rule.operator)
+    condition_method = 'rulengine.conditions.c_{0}_{1}'.format(
+        rule.data_structure, rule.operator)
     try:
         func = _import_class(condition_method)
     except AttributeError:
-        condition_method = 'conditions.c_{0}'.format(rule.data_structure)
+        condition_method = 'rulengine.conditions.c_{0}'.format(
+            rule.data_structure)
         func = _import_class(condition_method)
 
     rule = prevalidate_rule(rule)
