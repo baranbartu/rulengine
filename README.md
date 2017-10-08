@@ -3,13 +3,8 @@ Simple Rule Engine for Python
 
 ```bash
 In [37]: from rulengine.core import DataStructure, Operator, Rule
-
 In [38]: from rulengine import execute
-
-In [39]: rule
-Out[39]: Rule(value=1, operator='equal', comparison_value=1, data_structure='int')
-
+In [39]: rule = rule = Rule(value=1, operator=Operator.EQUAL, comparison_value=1, data_structure=DataStructure.INTEGER)
 In [40]: execute([rule])
-Out[40]: True
-
+Out[41]: True
 ```
