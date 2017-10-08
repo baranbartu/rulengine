@@ -1,7 +1,7 @@
 from rulengine.core import stdoutIO, CodeGenerator
 from rulengine.conditions import make_condition
 
-VERSION = (0, 0, 1)
+VERSION = (0, 0, 2)
 __version__ = '.'.join(map(str, VERSION))
 
 
