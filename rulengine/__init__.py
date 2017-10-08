@@ -1,6 +1,9 @@
 from core import stdoutIO, CodeGenerator
 from conditions import make_condition
 
+VERSION = (0, 0, 1)
+__version__ = '.'.join(map(str, VERSION))
+
 
 def execute(rules):
     code = generate_executable_code(rules)
