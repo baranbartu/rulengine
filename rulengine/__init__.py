@@ -1,6 +1,6 @@
 from rulengine.conditions import execute_condition
 
-VERSION = (0, 0, 3)
+VERSION = (0, 0, 4)
 __version__ = '.'.join(map(str, VERSION))
 
 
