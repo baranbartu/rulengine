@@ -1,5 +1,6 @@
 import six
 import sys
+import datetime
 from collections import namedtuple
 
 Rule = namedtuple('Rule', ('value', 'operator',
@@ -14,6 +15,7 @@ class Operator:
     GREATER = 'greater'
     LESS_EQUAL = 'less_equal'
     GREATER_EQUAL = 'greater_equal'
+    CONTAINS = 'contains'
     IN = 'in'
     IN_COMMA = 'in_comma'
 
@@ -25,7 +27,7 @@ class Operator:
         LESS_EQUAL: lambda x, y: x <= y,
         GREATER_EQUAL: lambda x, y: x >= y,
         IN: lambda x, y: x in y,
-        IN_COMMA: lambda x, y: x in y
+        CONTAINS: lambda x, y: x in y,
     }
 
 
@@ -48,3 +50,13 @@ def import_class(class_path):
     module_name, class_name = class_path.rsplit('.', 1)
     module = _import_module(module_name)
     return getattr(module, class_name)
+
+
+def get_date(value, date=True, format='%Y-%m-%d'):
+    if isinstance(value, datetime.date):
+        return value
+
+    date_value = datetime.datetime.strptime(value, format)
+    if date:
+        return date_value.date()
+    return date_value
