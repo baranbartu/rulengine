@@ -1,6 +1,12 @@
 # rulengine
-Simple Rule Engine for Python
+##### Simple Rule Engine for Python
 
+# Installation
+```bash
+pip install rulengine
+```
+
+# Usage
 ```bash
 In [37]: from rulengine.core import DataStructure, Operator, Rule
 In [38]: from rulengine import execute
