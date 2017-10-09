@@ -13,5 +13,5 @@ In [2]: from rulengine import execute
 
 In [3]: rule = Rule(value=1, operator=Operator.EQUAL, comparison_value=1, data_structure=DataStructure.INTEGER)
 In [4]: execute([rule])
-Out[5]: True
+Out[4]: True
 ```
