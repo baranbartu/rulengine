@@ -1,5 +1,7 @@
 # rulengine
 ##### Simple Rule Engine for Python
+##### Rule engine gives an approach to you: "it would valid, if one of the rules can provide necessarry condition"
+##### You can use in your any project, but remember; you need to make your own data context and generate rules on your side
 
 # Installation
 ```bash
