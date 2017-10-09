@@ -1,27 +1,13 @@
-from rulengine.conditions import make_condition
+from rulengine.conditions import execute_condition
 
 VERSION = (0, 0, 3)
 __version__ = '.'.join(map(str, VERSION))
 
 
 def execute(rules):
-    conditions = generate_conditions(rules)
-    return execute_conditions(conditions)
-
-
-def generate_conditions(rules):
-    conditions = []
-    for rule in rules:
-        cond = make_condition(rule)
-        conditions.append(cond)
-    return conditions
-
-
-def execute_conditions(conditions):
     result = False
-    for cond in conditions:
-        # each cond is a lambda function that was prepared in conditions
-        result = cond()
+    for rule in rules:
+        result = execute_condition(rule)
         if result:
             break
     return result
