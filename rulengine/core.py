@@ -15,9 +15,9 @@ class Operator:
     GREATER = 'greater'
     LESS_EQUAL = 'less_equal'
     GREATER_EQUAL = 'greater_equal'
-    CONTAINS = 'contains'
     IN = 'in'
-    IN_COMMA = 'in_comma'
+    CONTAINS = 'contains'
+
 
     FUNC_MAPPING = {
         EQUAL: lambda x, y: x == y,
