@@ -13,7 +13,7 @@ pip install rulengine
 In [1]: from rulengine.core import DataType, LogicalOperator, BitwiseOperator, Rule, Condition
 In [2]: from rulengine import execute
 
-In [3]: condition = Condition(value=1, bitwise_operator=BitwiseOperator.EQUAL, comparison_value=2, data_type=DataType.Integer) 
+In [3]: condition = Condition(value=1, bitwise_operator=BitwiseOperator.EQUAL, comparison_value=2, data_type=DataType.INTEGER) 
 In [4]: rule =  Rule(logical_operator=LogicalOperator.AND, conditions=[condition])
 In [5]: execute([rule])
 Out[5]: False
