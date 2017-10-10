@@ -1,34 +1,35 @@
-from rulengine.core import import_class, get_date, Operator, Condition
+from rulengine.core import (import_class, get_date, BitwiseOperator,
+                            ExecutableCondition)
 
 
-def execute_condition(rule):
+def execute_condition(cond):
     """
     Get a rule instance for given operator and
     return condition lambda func
     """
 
     condition_method = 'rulengine.conditions.c_{0}_{1}'.format(
-        rule.data_structure, rule.operator)
+        cond.data_type, cond.bitwise_operator)
     try:
         func = import_class(condition_method)
     except AttributeError:
         condition_method = 'rulengine.conditions.c_{0}'.format(
-            rule.data_structure)
+            cond.data_type)
         func = import_class(condition_method)
 
-    cond = convert_rule_to_condition(rule)
-    return func(cond)
+    executable_cond = convert_condition_to_executable(cond)
+    return func(executable_cond)
 
 
-def convert_rule_to_condition(rule):
+def convert_condition_to_executable(cond):
     try:
-        func = Operator.FUNC_MAPPING[rule.operator]
+        func = BitwiseOperator.FUNC_MAPPING[cond.bitwise_operator]
     except KeyError:
-        raise ValueError('Operator \'%s\' not supported.' % rule.operator)
+        raise ValueError('Invalid bitwise operator.')
 
-    cond = Condition(value=rule.value, func=func,
-                     comparison_value=rule.comparison_value)
-    return cond
+    executable_cond = ExecutableCondition(
+        value=cond.value, func=func, comparison_value=cond.comparison_value)
+    return executable_cond
 
 
 def c_int(cond):

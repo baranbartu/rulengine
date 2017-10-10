@@ -3,12 +3,15 @@ import sys
 import datetime
 from collections import namedtuple
 
-Rule = namedtuple('Rule', ('value', 'operator',
-                           'comparison_value', 'data_structure'))
-Condition = namedtuple('Condition', ('value', 'func', 'comparison_value'))
+Rule = namedtuple('Rule', ('logical_operator', 'conditions'))
+Condition = namedtuple('Condition', ('value', 'bitwise_operator',
+                                     'comparison_value', 'data_type'))
+ExecutableCondition = namedtuple('ExecutableCondition', ('value',
+                                                         'func',
+                                                         'comparison_value'))
 
 
-class Operator:
+class BitwiseOperator:
     EQUAL = 'equal'
     NOT_EQUAL = 'not_equal'
     LESS = 'less'
@@ -17,7 +20,6 @@ class Operator:
     GREATER_EQUAL = 'greater_equal'
     IN = 'in'
     CONTAINS = 'contains'
-
 
     FUNC_MAPPING = {
         EQUAL: lambda x, y: x == y,
@@ -31,7 +33,17 @@ class Operator:
     }
 
 
-class DataStructure:
+class LogicalOperator:
+    AND = 'and'
+    OR = 'or'
+
+    FUNC_MAPPING = {
+        AND: lambda *args: all(_ for _ in args),
+        OR: lambda *args: any(_ for _ in args)
+    }
+
+
+class DataType:
     STRING = 'str'
     INTEGER = 'int'
     FLOAT = 'float'
