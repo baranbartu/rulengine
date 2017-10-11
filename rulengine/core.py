@@ -3,15 +3,15 @@ import sys
 import datetime
 from collections import namedtuple
 
-Rule = namedtuple('Rule', ('logical_operator', 'conditions'))
-Condition = namedtuple('Condition', ('value', 'bitwise_operator',
+Rule = namedtuple('Rule', ('operator', 'conditions'))
+Condition = namedtuple('Condition', ('value', 'operator',
                                      'comparison_value', 'data_type'))
 ExecutableCondition = namedtuple('ExecutableCondition', ('value',
                                                          'func',
                                                          'comparison_value'))
 
 
-class BitwiseOperator:
+class ConditionOperator:
     EQUAL = 'equal'
     NOT_EQUAL = 'not_equal'
     LESS = 'less'
@@ -33,7 +33,7 @@ class BitwiseOperator:
     }
 
 
-class LogicalOperator:
+class RuleOperator:
     AND = 'and'
     OR = 'or'
 
