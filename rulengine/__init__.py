@@ -1,7 +1,7 @@
 from rulengine.core import RuleOperator
 from rulengine.conditions import execute_condition
 
-VERSION = (0, 0, 5)
+VERSION = (0, 0, 6)
 __version__ = '.'.join(map(str, VERSION))
 
 
