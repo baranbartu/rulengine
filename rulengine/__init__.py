@@ -1,4 +1,4 @@
-from rulengine.core import LogicalOperator
+from rulengine.core import RuleOperator
 from rulengine.conditions import execute_condition
 
 VERSION = (0, 0, 5)
@@ -17,8 +17,7 @@ def execute(rules):
 def execute_rule(rule):
     condition_results = [execute_condition(cond) for cond in rule.conditions]
     try:
-        logical_operator_func = LogicalOperator.FUNC_MAPPING[
-            rule.logical_operator]
+        rule_operator_func = RuleOperator.FUNC_MAPPING[rule.operator]
     except KeyError:
-        raise ValueError('Invalid logical operator.')
-    return logical_operator_func(*condition_results)
+        raise ValueError('Invalid rule operator.')
+    return rule_operator_func(*condition_results)

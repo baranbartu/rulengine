@@ -1,4 +1,4 @@
-from rulengine.core import (import_class, get_date, BitwiseOperator,
+from rulengine.core import (import_class, get_date, ConditionOperator,
                             ExecutableCondition)
 
 
@@ -9,7 +9,7 @@ def execute_condition(cond):
     """
 
     condition_method = 'rulengine.conditions.c_{0}_{1}'.format(
-        cond.data_type, cond.bitwise_operator)
+        cond.data_type, cond.operator)
     try:
         func = import_class(condition_method)
     except AttributeError:
@@ -23,9 +23,9 @@ def execute_condition(cond):
 
 def convert_condition_to_executable(cond):
     try:
-        func = BitwiseOperator.FUNC_MAPPING[cond.bitwise_operator]
+        func = ConditionOperator.FUNC_MAPPING[cond.operator]
     except KeyError:
-        raise ValueError('Invalid bitwise operator.')
+        raise ValueError('Invalid condition operator.')
 
     executable_cond = ExecutableCondition(
         value=cond.value, func=func, comparison_value=cond.comparison_value)
